@@ -24,14 +24,14 @@ En donde dice PATH tenes que reemplazar con la ubicación de el webdriver que de
 
 
 ### ¿Qué es triggerCMD?
-Es una [skill oficial de Alexa](https://www.amazon.com/gp/product/B074TV61DK) que permite ejecutar aplicaciones en tu pc usando comandos de voz a través de tu Alexa.
+Es una [skill oficial de Alexa](https://www.amazon.com/gp/product/B074TV61DK) que permite ejecutar comandos por cmd en tu pc usando comandos de voz a través de tu Alexa.
 
 ### ¿Cómo se configura triggerCMD?
 Primero asegurate de activar la [skill conversacional de triggerCMD](https://www.amazon.com/gp/product/B074TV61DK) llamada "Ejecuta Comando" una vez hecho eso tenes que [descargar la aplicación de escritorio para tu pc](https://triggercmd.com/es/)
 
 Ya con eso solo falta configurar qué comando queres que se ejecute en tu compu cuando uses la skill desde Alexa
 
-Por ejemplo si tu skill es asi:
+Por ejemplo si tu config en triggerCMD es asi:
 ```
  {
   "trigger": "saldo",
@@ -44,4 +44,4 @@ Por ejemplo si tu skill es asi:
  }
 ```
 
-Esto significa que cuando le diga a su Alexa "Ejecuta comando saldo" va a ejecutar el comando "python C:\\alexaSube\\src\\main.py" en sus computadoras.
+Esto significa que cuando le digas a Alexa "Ejecuta comando saldo" va a ejecutar el comando "python C:\\alexaSube\\src\\main.py" en tu computadora.
