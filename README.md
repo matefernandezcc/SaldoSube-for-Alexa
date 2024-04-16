@@ -1,8 +1,8 @@
 # SaldoSube for Alexa
- Conoce el saldo de tu sube a través de tu dispositivo Amazon Alexa
+ Conoce el saldo de tu sube a través de tu dispositivo Amazon Alexa.
 
 ## ¿Cómo Funciona?
-El programa hace uso de las bibliotecas de selenium para automatizar el inicio de sesión en la pagina de Sube
+El programa hace uso de las bibliotecas de selenium para automatizar el inicio de sesión en la pagina de Sube.
 Una vez logra iniciar sesión retorna el valor de tu saldo y lo envia a alexa usando la skill triggerCMD.
 
 ## ¿Cómo usar?
