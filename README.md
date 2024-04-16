@@ -31,7 +31,7 @@ Primero asegurate de activar la [skilll conversacional de triggerCMD](https://ww
 
 Ya con eso solo falta configurar qué comando queres que se ejecute en tu compu cuando uses la skill desde Alexa
 
-La mia por ejemplo es asi:
+Por ejemplo si tu skill es asi:
 ```
  {
   "trigger": "saldo",
