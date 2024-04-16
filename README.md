@@ -14,3 +14,7 @@ Requisitos
 
 ## Importante
 Por ahora le programa solo funciona usando la skill de triggerCMD y ejecutando el script desde ahi, para eso es necesario tener configurada una computadora en triggerCMD y que esta este prendida para poder correr el script de python.
+
+## FAQs
+### ¿Qué es triggerCMD?
+Es una [skill oficial de Alexa](https://www.amazon.com/gp/product/B074TV61DK) que permite ejecutar aplicaciones en tu pc usando comandos de voz a través de tu Alexa.
