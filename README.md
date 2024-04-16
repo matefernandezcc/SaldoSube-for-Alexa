@@ -27,7 +27,7 @@ En donde dice PATH tenes que reemplazar con la ubicación de el webdriver que de
 Es una [skill oficial de Alexa](https://www.amazon.com/gp/product/B074TV61DK) que permite ejecutar aplicaciones en tu pc usando comandos de voz a través de tu Alexa.
 
 ### ¿Cómo se configura triggerCMD?
-Primero asegurate de activar la [skilll conversacional de triggerCMD](https://www.amazon.com/gp/product/B074TV61DK) llamada "Ejecuta Comando" una vez hecho eso tenes que [descargar la aplicación de escritorio para tu pc](https://triggercmd.com/es/)
+Primero asegurate de activar la [skill conversacional de triggerCMD](https://www.amazon.com/gp/product/B074TV61DK) llamada "Ejecuta Comando" una vez hecho eso tenes que [descargar la aplicación de escritorio para tu pc](https://triggercmd.com/es/)
 
 Ya con eso solo falta configurar qué comando queres que se ejecute en tu compu cuando uses la skill desde Alexa
 
