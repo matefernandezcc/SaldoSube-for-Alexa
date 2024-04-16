@@ -28,7 +28,7 @@ try:
         saldo = None
 
     # Path donde está el WebDriver de Chrome
-    service = Service(r"D:\\tools\\chromedriver.exe")
+    service = Service(r"PATH A TU WEBDRIVER")
 
     # Configurar las opciones del navegador Chrome
     chrome_options = ChromeOptions()

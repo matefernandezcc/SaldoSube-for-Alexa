@@ -16,6 +16,13 @@ Requisitos
 Por ahora le programa solo funciona usando la skill de triggerCMD y ejecutando el script desde ahi, para eso es necesario tener configurada una computadora en triggerCMD y que esta este prendida para poder correr el script de python.
 
 ## FAQs
+### ¿Cómo uso el script?
+Primero tenes que tener configurado triggerCMD, despes de eso vas a editar el archivo de python main.py y agregar tus credenciales de inicio se sesión para poder entrar en la pagina de la Sube y leer tu saldo.
+
+Tambien vas a ver que en el main.py hay una parte que dice service = Service(r"PATH")
+En donde dice PATH tenes que reemplazar con la ubicación de el webdriver que descargaste, por ejemplo: C:\\tools\\chromedriver.exe
+
+
 ### ¿Qué es triggerCMD?
 Es una [skill oficial de Alexa](https://www.amazon.com/gp/product/B074TV61DK) que permite ejecutar aplicaciones en tu pc usando comandos de voz a través de tu Alexa.
 
