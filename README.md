@@ -18,3 +18,23 @@ Por ahora le programa solo funciona usando la skill de triggerCMD y ejecutando e
 ## FAQs
 ### ¿Qué es triggerCMD?
 Es una [skill oficial de Alexa](https://www.amazon.com/gp/product/B074TV61DK) que permite ejecutar aplicaciones en tu pc usando comandos de voz a través de tu Alexa.
+
+### ¿Cómo se configura triggerCMD?
+Primero asegurate de activar la [skilll conversacional de triggerCMD](https://www.amazon.com/gp/product/B074TV61DK) llamada "Ejecuta Comando" una vez hecho eso tenes que [descargar la aplicación de escritorio para tu pc](https://triggercmd.com/es/)
+
+Ya con eso solo falta configurar qué comando queres que se ejecute en tu compu cuando uses la skill desde Alexa
+
+La mia por ejemplo es asi:
+```
+ {
+  "trigger": "saldo",
+  "command": "python C:\\alexaSube\\src\\main.py",
+  "offCommand": "",
+  "ground": "foreground",
+  "voice": "saldo",
+  "voiceReply": "El saldo de tu sube es {{result}} pesos",
+  "allowParams": "false"
+ }
+```
+
+Esto significa que cuando le diga a su Alexa "Ejecuta comando saldo" va a ejecutar el comando "python C:\\alexaSube\\src\\main.py" en sus computadoras.
