@@ -13,15 +13,14 @@ def get_saldo():
         saldo = result.stdout.strip()
         return saldo
     except subprocess.CalledProcessError as e:
-        err1 = f'/mnt/c/Users/Mateo/Desktop/test/repos-github/SaldoSube-for-Alexa/SaldoSube-for-Alexa/alexa-remote-control/alexa_remote_control.sh -e "speak:Hubo un error al obtener el saldo"'
-        subprocess.run(err1, shell=True, check=True, capture_output=True, text=True)
+        print(f"Hubo un error al obtener el saldo")
         sys.exit(1)
 
 ###################### Ejecutar el script de bash con el saldo obtenido ######################
 def run_alexa_remote_control(saldo):
     # Convertir el saldo a string y formatearlo si es necesario
     saldo_str = str(saldo).replace('.', ',')
-    command = f'/mnt/c/Users/Mateo/Desktop/test/repos-github/SaldoSube-for-Alexa/SaldoSube-for-Alexa/alexa-remote-control/alexa_remote_control.sh -e "speak:Tu saldo es de {saldo_str}"'
+    command = f'/mnt/c/Users/Mateo/Desktop/test/repos-github/SaldoSube-for-Alexa/SaldoSube-for-Alexa/alexa-remote-control/alexa_remote_control.sh -e speak:Tu saldo es de {saldo_str}'
     
     try:
         ########### Ejecutar el script de bash ###########
@@ -29,8 +28,7 @@ def run_alexa_remote_control(saldo):
         print("Salida del script de Alexa Remote Control:")
         print(result.stdout)
     except subprocess.CalledProcessError as e:
-        err2 = f'/mnt/c/Users/Mateo/Desktop/test/repos-github/SaldoSube-for-Alexa/SaldoSube-for-Alexa/alexa-remote-control/alexa_remote_control.sh -e "speak:Hubo un error al ejecutar alexa remote"'
-        subprocess.run(err2, shell=True, check=True, capture_output=True, text=True)
+        print(f"Hubo un error al ejecutar alexa remote")
         sys.exit(1)
 
 if __name__ == "__main__":

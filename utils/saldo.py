@@ -1,6 +1,7 @@
 import time
 from playwright.sync_api import sync_playwright
 import os
+import subprocess
 
 ###################### Ruta absoluta ######################
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -28,6 +29,13 @@ def get_balance():
                 page.fill('input#txtDocumento', documento)
                 page.get_by_text('MASCULINO').click()
                 page.fill('input#txtPassword', password)
+
+                ########### Verificar si hay captcha ###########
+                if page.is_visible('iframe[title="reCAPTCHA"]'):
+                    captcha_handler()
+                    break
+
+                ########### Intentar hacer click en el botón de ingresar ###########
                 page.get_by_role('button', name='Ingresar').click()
 
                 ########### Esperar al elemento ###########
@@ -47,6 +55,13 @@ def get_balance():
 
         except Exception as e:
             time.sleep(2)
+
+###################### CAPTCHA HANDLER ######################
+def captcha_handler():
+    comando = '/mnt/c/Users/Mateo/Desktop/test/repos-github/SaldoSube-for-Alexa/SaldoSube-for-Alexa/alexa-remote-control/alexa_remote_control.sh'
+    argumentos = ['-e', 'speak:Se detecto un Captcha, no pude obtener el saldo']
+    
+    resultado = subprocess.run([comando] + argumentos, capture_output=True, text=True)
 
 ###################### Llamar a la función y almacenar el saldo ######################
 if __name__ == "__main__":
