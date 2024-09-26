@@ -21,10 +21,10 @@ Requisitos
 Para que el programa funcione tienen que previamente haber configurado Alexa remote control, siguiendo las [intrucciones](https://github.com/adn77/alexa-remote-control), pero básicamente tienen que descargar el binario de 
 [Alexa Cookie CLI](https://github.com/adn77/alexa-cookie-cli/releases).
 
- 1 Ejecutar alexa-cookie-cli
- 2 En el navegador ingresar a http://127.0.0.1:8080/
- 3 Iniciar sesión en Amazon
- 4 Si todo salío bien, el programa va a mostrar en la terminal su refresh_token (empieza con Atnr|...)
+- 1 Ejecutar alexa-cookie-cli
+- 2 En el navegador ingresar a http://127.0.0.1:8080/
+- 3 Iniciar sesión en Amazon
+- 4 Si todo salío bien, el programa va a mostrar en la terminal su refresh_token (empieza con Atnr|...)
 
 Una vez tienen el refresh_token lo copian y pegan dentro del archivo alexa-remote-control donde dice SET_REFRESH_TOKEN='lo pegan aca'
 
