@@ -1,36 +1,19 @@
 import subprocess
 import sys
-import os
-
-###################### saldo.py debe retornar un string ######################
-def get_saldo():
-    try:
-        ########### Ejecutar el script saldo.py y obtener su salida ###########
-        result = subprocess.run(['python', '/mnt/c/Users/Mateo/Desktop/test/repos-github/SaldoSube-for-Alexa/SaldoSube-for-Alexa/utils/saldo.py'], 
-                                 capture_output=True, text=True, check=True)
-        
-        ########### Obtener el saldo como string ###########
-        saldo = result.stdout.strip()
-        return saldo
-    except subprocess.CalledProcessError as e:
-        print(f"Hubo un error al obtener el saldo")
-        sys.exit(1)
+from utils.saldo import *
 
 ###################### Ejecutar el script de bash con el saldo obtenido ######################
-def run_alexa_remote_control(saldo):
-    # Convertir el saldo a string y formatearlo si es necesario
+def format_saldo(saldo):
     saldo_str = str(saldo).replace('.', ',')
-    command = f'/mnt/c/Users/Mateo/Desktop/test/repos-github/SaldoSube-for-Alexa/SaldoSube-for-Alexa/alexa-remote-control/alexa_remote_control.sh -e speak:Tu saldo es de {saldo_str}'
     
     try:
-        ########### Ejecutar el script de bash ###########
-        result = subprocess.run(command, shell=True, check=True, capture_output=True, text=True)
-        print("Salida del script de Alexa Remote Control:")
-        print(result.stdout)
+        to_alexa(f"Tu saldo es de {saldo_str} pesos")
+
     except subprocess.CalledProcessError as e:
-        print(f"Hubo un error al ejecutar alexa remote")
+        to_alexa("Hubo un error al ejecutar Alexa remote")
         sys.exit(1)
 
 if __name__ == "__main__":
-    saldo = get_saldo()
-    run_alexa_remote_control(saldo)
+    #to_alexa("Obteniendo Saldo...")
+    saldo = get_balance()
+    format_saldo(saldo)
