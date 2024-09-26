@@ -2,29 +2,35 @@
  Conoce el saldo de tu sube a través de tu dispositivo Amazon Alexa.
 
 ## ¿Cómo Funciona?
-El programa hace uso de las bibliotecas de selenium para automatizar el inicio de sesión en la pagina de Sube.
-Una vez logra iniciar sesión retorna el valor de tu saldo y lo envia a alexa usando la skill triggerCMD.
+El programa hace uso del navegador de Playwright para automatizar el inicio de sesión en la pagina de Sube.
+Una vez logra iniciar sesión retorna el valor de tu saldo y se lo envia a Alexa usando [Alexa-remote-control](https://github.com/adn77/alexa-remote-control) el cual es un programa que permite manejar a Alexa dede una terminal.
 
 ## ¿Cómo usar?
 Requisitos
 - [Python](https://www.python.org/downloads/)
-- [Selenium 4.0 o posterior](https://www.selenium.dev/documentation/webdriver/getting_started/install_library/)
-- [Chrome webdriver](https://developer.chrome.com/docs/chromedriver/downloads?hl=es-419)
-- [triggerCMD skill](https://www.triggercmd.com)
+- [Playwright](https://playwright.dev/python/docs/intro)
+- [Setup - Alexa remote control](https://github.com/adn77/alexa-remote-control)
+- [Opcional - Alexa triggerCMD skill](https://www.triggercmd.com)
 
 ## Importante
-Por ahora le programa solo funciona usando la skill de triggerCMD y ejecutando el script desde ahi, para eso es necesario tener configurada una computadora en triggerCMD y que esta este prendida para poder correr el script de python.
+Para que el programa funcione tienen que previamente haber configurado Alexa remote control, siguiendo las [intrucciones](https://github.com/adn77/alexa-remote-control), pero básicamente tienen que descargar el binario de 
+[Alexa Cookie CLI](https://github.com/adn77/alexa-cookie-cli/releases).
+
+ 1 Ejecutar alexa-cookie-cli
+ 2 En el navegador ingresar a http://127.0.0.1:8080/
+ 3 Iniciar sesión en Amazon
+ 4 Si todo salío bien, el programa va a mostrar en la terminal su refresh_token (empieza con Atnr|...)
+
+Una vez tienen el refresh_token lo copian y pegan dentro del archivo alexa-remote-control donde dice SET_REFRESH_TOKEN='lo pegan aca'
 
 ## FAQs
 ### ¿Cómo uso el script?
-Primero tenes que tener configurado triggerCMD, despes de eso vas a editar el archivo de python main.py y agregar tus credenciales de inicio se sesión para poder entrar en la pagina de Sube y leer tu saldo.
-
-Tambien vas a ver que en el main.py hay una parte que dice service = Service(r"PATH")
-En donde dice PATH tenes que reemplazar con la ubicación de el webdriver que descargaste, por ejemplo: C:\\tools\\chromedriver.exe
-
+Luego de haber configurado todo solo queda que cambies los PATH dentro del archivo main.py y listo.
+Uno deberia ir hacia saldo.py y el otro hacia alexa_remote_control.sh
 
 ### ¿Qué es triggerCMD?
 Es una [skill oficial de Alexa](https://www.amazon.com/gp/product/B074TV61DK) que permite ejecutar comandos por cmd en tu pc usando comandos de voz a través de tu Alexa.
+Es útil para ejecutar el script directamente usando tu voz sin tener que correrlo desde la pc.
 
 ### ¿Cómo se configura triggerCMD?
 Primero asegurate de activar la [skill conversacional de triggerCMD](https://www.amazon.com/gp/product/B074TV61DK) llamada "Ejecuta Comando" una vez hecho eso tenes que [descargar la aplicación de escritorio para tu pc](https://triggercmd.com/es/)
@@ -39,7 +45,7 @@ Por ejemplo si tu config en triggerCMD es asi:
   "offCommand": "",
   "ground": "foreground",
   "voice": "saldo",
-  "voiceReply": "El saldo de tu sube es {{result}} pesos",
+  "voiceReply": "",
   "allowParams": "false"
  }
 ```
