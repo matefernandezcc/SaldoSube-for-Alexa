@@ -5,14 +5,11 @@ import subprocess
 
 ###################### Ruta absoluta ######################
 script_dir = os.path.dirname(os.path.abspath(__file__))
-data_file_path = os.path.join(script_dir, 'data.txt')
+env_file_path = os.path.join(script_dir, '..', '.env.local')  # Ruta al archivo .env.local en el directorio padre
 
-###################### Leer data.txt ######################
-with open(data_file_path, 'r') as file:
-    ########### Obtener el documento y la contraseña ###########
-    lines = file.readlines()
-    documento = lines[0].strip()
-    password = lines[1].strip()
+# Obtener el documento y la contraseña desde las variables de entorno
+documento = os.environ.get('DOCUMENTO')
+password = os.environ.get('PASSWORD')
 
 ###################### Intentar obtener el saldo ######################
 def get_balance():
