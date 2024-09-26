@@ -48,5 +48,6 @@ Por ejemplo, si tu configuración en triggerCMD es así:
   "voiceReply": "",
   "allowParams": "false"
 }
+```
 
-Esto significa que al decirle a Alexa "Ejecuta comando saldo", va a ejecutar en tu pc -> "python C:\\alexaSube\\src\\main.py"
+Esto significa que al decirle a Alexa "Ejecuta comando saldo", va a ejecutar -> "python C:\\alexaSube\\src\\main.py" en tu pc
