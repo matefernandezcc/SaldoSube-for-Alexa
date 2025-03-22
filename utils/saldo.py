@@ -8,8 +8,8 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 env_file_path = os.path.join(script_dir, '..', '.env.local')  # Ruta al archivo .env.local en el directorio padre
 
 # Obtener el documento y la contraseña desde las variables de entorno
-documento = os.environ.get('DOCUMENTO')
-password = os.environ.get('PASSWORD')
+documento = os.environ.get('DNI')
+password = os.environ.get('PIN') 
 
 ###################### Intentar obtener el saldo ######################
 def get_balance():

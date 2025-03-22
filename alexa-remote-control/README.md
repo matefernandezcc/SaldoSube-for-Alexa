@@ -1,25 +1,27 @@
 
-# alexa-remote-control
-control Amazon Alexa from command Line
+# Alexa remote control usage
+Control Amazon Alexa from command Line
 
+### Settings
 The settings can now be controlled via environment variables.
 ```
-BROWSER   - the User-Agent your browser sends in the request header
-AMAZON    - your Amazon domain
-ALEXA     - the URL you would use for the Alexa Web App
-CURL      - location of your cURL binary
-OPTS      - any cURL options you require
-TMP       - location of the temp dir
-SPEAKVOL  - the volume for speak messages ( if set to 0, volume levels are left untouched)
-NORMALVOL - if no current playing volume can be determined, fall back to normal volume
-VOLMAXAGE - max. age in minutes before volume is re-read from API
+BROWSER         - the User-Agent your browser sends in the request header
+AMAZON          - your Amazon domain
+ALEXA           - the URL you would use for the Alexa Web App
+CURL            - location of your cURL binary
+OPTS            - any cURL options you require
+TMP             - location of the temp dir
+SPEAKVOL        - the volume for speak messages ( if set to 0, volume levels are left untouched)
+NORMALVOL       - if no current playing volume can be determined, fall back to normal volume
+VOLMAXAGE       - max. age in minutes before volume is re-read from API
 DEVICEVOLNAME   - a list of device names with specific volume settings (space separated)
 DEVICEVOLSPEAK  - a list of speak volume levels - matching the devices above
-DEVICEVOLNORMAL - a list of normal volume levels- matching the devices above
-                  (current playing volume takes precedence for normal volume)
+DEVICEVOLNORMAL - a list of normal volume levels- matching the devices above (current playing volume takes precedence for normal volume)
 REFRESH_TOKEN   - the new preference over EMAIL/PASSWORD can be obtained here: https://github.com/adn77/alexa-cookie-cli
 ```
+---
 
+### Commands
 ```
 alexa-remote-control [-d <device>|ALL] -e <pause|play|next|prev|fwd|rwd|shuffle|repeat|vol:<0-100>> |
                     -b [list|<"AA:BB:CC:DD:EE:FF">] | -q | -n | -r <"station name"|stationid> |
@@ -56,9 +58,9 @@ alexa-remote-control [-d <device>|ALL] -e <pause|play|next|prev|fwd|rwd|shuffle|
    -l : logoff
    -h : help
 ```
+---
 
-Login via REFRESH_TOKEN
-----
-The Alexa-App way of logging in is using a REFRESH_TOKEN which allows for obtaining the session cookies. This replaces EMAIL/PASSWORD/MFA so those will not be exposed in any scripts anymore. For convenience I created a binary, ready to run: https://github.com/adn77/alexa-cookie-cli
+### Login via REFRESH_TOKEN
+The Alexa-App way of logging in is using a REFRESH_TOKEN which allows for obtaining the session cookies. This replaces EMAIL/PASSWORD/MFA so those will not be exposed in any scripts anymore. For convenience there is a binary, ready to run: https://github.com/adn77/alexa-cookie-cli
 
 https://blog.loetzimmer.de/2021/09/alexa-remote-control-shell-script.html

@@ -1,4 +1,7 @@
+# Enviroment variables
+venv
+.env
 
-utils/data.txt
-alexa-remote-control/token.txt
-alexa-remote-control/alexa_remote_control_plain.sh
+# Python
+__pycache__/
+*.pyc

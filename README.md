@@ -6,7 +6,7 @@ Conoce el saldo de tu SUBE a través de tu dispositivo Amazon Alexa.
 </div>
 
 ## ¿Cómo Funciona?
-El programa hace uso del navegador de Playwright para automatizar el inicio de sesión en la página de SUBE. Una vez logra iniciar sesión, retorna el valor de tu saldo y se lo envía a Alexa usando [Alexa-remote-control](https://github.com/adn77/alexa-remote-control), el cual es un programa que permite manejar a Alexa desde una terminal.
+El programa hace uso del navegador de Playwright para automatizar el inicio de sesión en la página de SUBE. Una vez logra iniciar sesión, retorna el valor de tu saldo y se lo envía a Alexa usando [Alexa-remote-control](https://github.com/adn77/alexa-remote-control), el cual es un programa que permite manejar a Alexa desde una terminal. 
 
 ## ¿Cómo usar?
 ### Requisitos

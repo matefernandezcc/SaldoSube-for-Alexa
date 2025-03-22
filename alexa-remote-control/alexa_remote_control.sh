@@ -95,11 +95,13 @@
 # - jq as command line JSON parser (optional for the fancy bits)
 # - base64 for B64 encoding (make sure "-w 0" option is available on your platform)
 #
-##########################################
+################################################################################################################################
 
 # this can be obtained by doing the device registration login flow
 #  e.g. from here: https://github.com/adn77/alexa-cookie-cli/
-SET_REFRESH_TOKEN=$(cat token.txt)
+# Cargar el archivo .env para usar tu TOKEN de Amazon
+source .env
+SET_REFRESH_TOKEN=$TOKEN
 
 SET_TTS_LOCALE='de-DE'
 
@@ -145,9 +147,8 @@ SET_DEVICEVOLNORMAL=""
 # max. age in minutes before volume is read from API (local cache time)
 SET_VOLMAXAGE="1"
 
-###########################################
+#################################################################################################################################
 # nothing to configure below here
-#
 
 # retrieving environment variables if any are set
 REFRESH_TOKEN=${REFRESH_TOKEN:-$SET_REFRESH_TOKEN}

@@ -7,7 +7,8 @@ def format_saldo(saldo):
     saldo_str = str(saldo).replace('.', ',')
     
     try:
-        to_alexa(f"Tu saldo es de {saldo_str} pesos")
+        #to_alexa(f"Tu saldo es de {saldo_str} pesos")
+        print("Tu saldo es de 100 pesos")
 
     except subprocess.CalledProcessError as e:
         to_alexa("Hubo un error al ejecutar Alexa remote")
