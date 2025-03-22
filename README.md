@@ -6,16 +6,15 @@ Conoce el saldo de tu SUBE a través de tu dispositivo Amazon Alexa.
 </div>
 
 ## ¿Cómo Funciona?
-El programa hace uso del navegador de Playwright para automatizar el inicio de sesión en la página de SUBE. Una vez logra iniciar sesión, retorna el valor de tu saldo y se lo envía a Alexa usando [Alexa-remote-control](https://github.com/adn77/alexa-remote-control), el cual es un programa que permite manejar a Alexa desde una terminal. 
+El programa hace uso del navegador de Playwright para automatizar el inicio de sesión en la página de SUBE. Una vez logra iniciar sesión, retorna el valor de tu saldo y se lo envía a Alexa usando [alexa-remote-control](https://github.com/adn77/alexa-remote-control), el cual es un programa que permite manejar a Alexa desde una terminal CLI. 
 
 ## ¿Cómo usar?
 ### Requisitos
 - [Python](https://www.python.org/downloads/)
-- [Playwright](https://playwright.dev/python/docs/intro)
 - [Setup - Alexa remote control](https://github.com/adn77/alexa-remote-control)
 - [Opcional - Alexa triggerCMD skill](https://www.triggercmd.com)
 
-## Importante
+## ⚠ Importante
 Para que el programa funcione, tienen que haber configurado previamente Alexa remote control, siguiendo las [instrucciones](https://github.com/adn77/alexa-remote-control). Pero, básicamente, tienen que descargar el binario de [Alexa Cookie CLI](https://github.com/adn77/alexa-cookie-cli/releases).
 
 1. Ejecutar alexa-cookie-cli
@@ -23,11 +22,43 @@ Para que el programa funcione, tienen que haber configurado previamente Alexa re
 3. Iniciar sesión en Amazon
 4. Si todo salió bien, el programa mostrará en la terminal su `refresh_token` (empieza con Atnr|...)
 
-Una vez tengan el `refresh_token`, lo copian y pegan dentro del archivo alexa-remote-control donde dice `SET_REFRESH_TOKEN='lo pegan aca'`.
+Una vez tengan el `refresh_token`, lo copian y pegan dentro del archivo .env.
 
 ## FAQs
 ### ¿Cómo uso el script?
-Luego de haber configurado todo, solo queda que cambies los `PATH` dentro del archivo `main.py` y listo. Uno debería ir hacia `saldo.py` y el otro hacia `alexa_remote_control.sh`.
+
+1) Primero tenes que clonar el repo.
+```bash
+git clone git@github:matefernandezcc/SaldoSube-for-Alexa.git
+cd SaldoSube-for-Alexa
+```
+
+2) Te recomiendo que crees un venv con Python (Virtual Enviroment)
+```bash
+# Crear venv
+python -m venv venv
+
+# Iniciar venv
+source venv/bin/activate
+
+# Instalar dependecias
+pip install -r requirements.txt
+```
+
+3) Ya casi esta, solo falta crear el archivo .env
+```bash
+# Esto dentro de la carpeta SaldoSube-for-Alexa
+touch .env
+```
+Vas a ver que se creo un archivo .env ahora lo abris y le escribis lo siguiente
+```bash
+TOKEN='tu_token'
+DNI='tu_dni'
+PIN='tu_contraseña_de_sube'
+GENERO='tu_genero' # reemplaza por MASCULINO FEMENINO o X (en mayuscula)
+```
+- reemplaza el Token por el que obtuviste (Leer Sección "⚠ Importante")
+- reemplaza DNI y PIN por los datos que usar para iniciar sesión en la [Página de sube](https://tarjetasube.sube.gob.ar/SubeWeb/WebForms/Account/Views/Login.aspx)
 
 ### ¿Qué es triggerCMD?
 Es una [skill oficial de Alexa](https://www.amazon.com/gp/product/B074TV61DK) que permite ejecutar comandos por cmd en tu PC usando comandos de voz a través de tu Alexa. Es útil para ejecutar el script directamente usando tu voz sin tener que correrlo desde la PC.
