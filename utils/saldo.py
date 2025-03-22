@@ -40,6 +40,7 @@ def get_balance():
                 if page.locator(captcha_frame_selector).is_visible():
                     to_alexa("Se detectó un Captcha, no pude obtener el saldo")
                     #print("Se detectó un Captcha, no pude obtener el saldo")
+                    time.sleep(2)
                     browser.close()
                     return -404
 

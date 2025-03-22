@@ -2,7 +2,7 @@ import subprocess
 import sys
 from utils.saldo import *
 
-###################### Ejecutar el script de bash con el saldo obtenido ######################
+# ////////////////////////////////// Ejecutar el script de bash con el saldo obtenido //////////////////////////////////
 def format_saldo(saldo):
     saldo_str = str(saldo).replace('.', ',')
     
