@@ -38,8 +38,8 @@ def get_balance():
 
                 # //////////// Verificar si el iframe de reCAPTCHA está presente ////////////
                 if page.locator(captcha_frame_selector).is_visible():
-                    #to_alexa("Se detectó un Captcha, no pude obtener el saldo")
-                    print("Se detectó un Captcha, no pude obtener el saldo")
+                    to_alexa("Se detectó un Captcha, no pude obtener el saldo")
+                    #print("Se detectó un Captcha, no pude obtener el saldo")
                     browser.close()
                     return -404
 
