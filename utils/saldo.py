@@ -42,7 +42,7 @@ def get_balance():
                     #print("Se detectó un Captcha, no pude obtener el saldo")
                     time.sleep(2)
                     browser.close()
-                    return -404
+                    exit(1)
 
                 # //////////// Esperar al elemento del saldo ////////////
                 page.wait_for_selector('span.ng-binding.font-saldo.bold')
