@@ -8,6 +8,7 @@ import time
 load_dotenv()
 DNI = os.getenv("DNI")
 PIN = os.getenv("PIN")
+GENERO = os.getenv("GENERO")
 
 # ////////////////////////////////// Intentar obtener el saldo //////////////////////////////////
 def get_balance():
@@ -22,7 +23,7 @@ def get_balance():
                 page.goto('https://tarjetasube.sube.gob.ar/SubeWeb/WebForms/Account/Views/Login.aspx')
                 # Rellenar información
                 page.fill('input#txtDocumento', DNI)
-                page.get_by_text('MASCULINO').click()
+                page.get_by_text(f'{GENERO}').click()
                 page.fill('input#txtPassword', PIN)
 
                 # //////////// Intentar hacer click en el botón de ingresar ////////////
