@@ -1,57 +1,57 @@
-import time
 from playwright.sync_api import sync_playwright
+from dotenv import load_dotenv
 import os
 import subprocess
+import time
 
-###################### Ruta absoluta ######################
-script_dir = os.path.dirname(os.path.abspath(__file__))
-env_file_path = os.path.join(script_dir, '..', '.env.local')  # Ruta al archivo .env.local en el directorio padre
+# ////////////////////////////////// Leer el archivo .env //////////////////////////////////
+load_dotenv()
+DNI = os.getenv("DNI")
+PIN = os.getenv("PIN")
 
-# Obtener el documento y la contraseña desde las variables de entorno
-documento = os.environ.get('DNI')
-password = os.environ.get('PIN') 
-
-###################### Intentar obtener el saldo ######################
+# ////////////////////////////////// Intentar obtener el saldo //////////////////////////////////
 def get_balance():
     while True:
         try:
             with sync_playwright() as p:
-                ########### Navegador ###########
-                browser = p.chromium.launch(headless=False, args=['--no-sandbox'])
+                # //////////// Navegador ////////////
+                browser = p.chromium.launch(headless=True, args=['--no-sandbox'])
                 page = browser.new_page()
 
-                ########### Login page ###########
+                # //////////// Login page ////////////
                 page.goto('https://tarjetasube.sube.gob.ar/SubeWeb/WebForms/Account/Views/Login.aspx')
-
-                page.fill('input#txtDocumento', documento)
+                # Rellenar información
+                page.fill('input#txtDocumento', DNI)
                 page.get_by_text('MASCULINO').click()
-                page.fill('input#txtPassword', password)
+                page.fill('input#txtPassword', PIN)
 
-                ########### Intentar hacer click en el botón de ingresar ###########
+                # //////////// Intentar hacer click en el botón de ingresar ////////////
                 page.get_by_role('button', name='Ingresar').click()
 
-                ########### Esperar a que el iframe de reCAPTCHA esté visible ###########
+                # //////////// Esperar a que el iframe de reCAPTCHA esté visible ////////////
                 captcha_frame_selector = "iframe[title='El reCAPTCHA caduca dentro de dos minutos']"
-                page.wait_for_selector(captcha_frame_selector) 
+                try:
+                    page.wait_for_selector(captcha_frame_selector, timeout=10000)  # Esperar 10 segundos por si aparece un captcha
+                except Exception:
+                    pass
 
-                ########### Verificar si el iframe de reCAPTCHA está presente ###########
+                # //////////// Verificar si el iframe de reCAPTCHA está presente ////////////
                 if page.locator(captcha_frame_selector).is_visible():
-                    to_alexa("Se detectó un Captcha, no pude obtener el saldo")
+                    #to_alexa("Se detectó un Captcha, no pude obtener el saldo")
+                    print("Se detectó un Captcha, no pude obtener el saldo")
                     browser.close()
-                    return
+                    return -404
 
-                ########### Esperar al elemento del saldo ###########
+                # //////////// Esperar al elemento del saldo ////////////
                 page.wait_for_selector('span.ng-binding.font-saldo.bold')
                 balance_text = page.locator('span.ng-binding.font-saldo.bold').text_content()
 
-                ########### Verificar que el balance sea un número ###########
+                # //////////// Verificar que el balance sea un número ////////////
                 if balance_text:
-                    balance_text = balance_text.replace(',', '.').replace('$', '').replace(' ', '').strip()
-                    # Solo devolver el saldo si se convierte correctamente
-                    if balance_text:
-                        return float(balance_text)
+                    balance_text = balance_text.replace('$', '').replace(' ', '').strip()
+                    return balance_text
 
-                ########### Si no se encuentra el saldo, vuelve a intentar ###########
+                # //////////// Si no se encuentra el saldo, vuelve a intentar ////////////
                 browser.close()
                 time.sleep(2)
 
@@ -59,14 +59,14 @@ def get_balance():
             print(f"Error: {e}")  # Imprimir el error para depuración
             time.sleep(2)
 
-###################### FUNCION PARA ENVIAR MENSAJES A ALEXA ######################
+# ////////////////////////////////// Wrapper para enviar mensajes a Alexa //////////////////////////////////
 def to_alexa(message):
-    comando = '/mnt/c/Users/Mateo/Desktop/test/repos-github/SaldoSube-for-Alexa/SaldoSube-for-Alexa/alexa-remote-control/alexa_remote_control.sh'
-    argumentos = ['-e', f'speak:{message}']
-    
-    resultado = subprocess.run([comando] + argumentos, capture_output=True, text=True)
+    path = './alexa-remote-control/alexa_remote_control.sh'
+    argumento = ['-e', f'speak:{message}']
 
-###################### Llamar a la función y almacenar el saldo ######################
+    resultado = subprocess.run([path] + argumento, capture_output=True, text=True)
+
+# ////////////////////////////////// Llamar a la función y almacenar el saldo //////////////////////////////////
 if __name__ == "__main__":
     saldo = get_balance()
     print(saldo)

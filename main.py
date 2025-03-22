@@ -8,10 +8,10 @@ def format_saldo(saldo):
     
     try:
         #to_alexa(f"Tu saldo es de {saldo_str} pesos")
-        print("Tu saldo es de 100 pesos")
+        print(f"Tu saldo es de {saldo_str} pesos")
 
     except subprocess.CalledProcessError as e:
-        to_alexa("Hubo un error al ejecutar Alexa remote")
+        #to_alexa("Hubo un error al ejecutar Alexa remote")
         sys.exit(1)
 
 if __name__ == "__main__":
